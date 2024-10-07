@@ -1,5 +1,6 @@
 package br.senac.tads.dsw.dadospessoais.pessoas;
 
+import br.senac.tads.dsw.dadospessoais.validacao.SenhasIguais;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
@@ -7,6 +8,7 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
+@SenhasIguais
 public class PessoaDto {
     
     @NotBlank
