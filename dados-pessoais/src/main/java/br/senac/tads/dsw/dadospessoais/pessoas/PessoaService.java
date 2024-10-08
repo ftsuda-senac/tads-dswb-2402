@@ -43,6 +43,23 @@ public class PessoaService {
         return pessoa;
     }
     
+    public Optional<PessoaDto> alterar(String apelido, PessoaDto pessoa) {
+        if (!pessoas.containsKey(apelido)) {
+            return Optional.empty();
+        }
+        pessoa.setApelido(apelido);
+        pessoas.put(apelido, pessoa);
+        return Optional.of(pessoa);
+    }
+    
+    public Optional<String> excluir(String apelido) {
+        if (!pessoas.containsKey(apelido)) {
+            return Optional.empty();
+        }
+        pessoas.remove(apelido);
+        return Optional.of(apelido);
+    }
+    
     
     
 }
