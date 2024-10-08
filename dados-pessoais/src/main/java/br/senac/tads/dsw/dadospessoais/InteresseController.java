@@ -11,7 +11,7 @@ public class InteresseController {
     
     @GetMapping
     public List<String> findAll() {
-        return List.of("Java", "HTML", "CSS", "Javascript", "Spring Boot");
+        return List.of("Java", "HTML", "CSS", "Javascript", "Spring Boot", "Python");
     }
     
 }
