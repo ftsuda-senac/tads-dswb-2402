@@ -35,7 +35,7 @@ public class Pessoa {
     @ManyToMany
     @JoinTable(name = "pessoa_interesse",
             joinColumns = @JoinColumn(name = "pessoa_id"),
-            inverseJoinColumns = @JoinColumn(name = "interesse_id")
+            inverseJoinColumns = @JoinColumn(name = "interesse_nome")
     )
     private Set<Interesse> interesses;
 

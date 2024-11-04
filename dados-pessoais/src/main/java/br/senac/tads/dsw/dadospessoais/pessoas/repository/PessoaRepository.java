@@ -17,7 +17,7 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Integer> {
     
     List<Pessoa> findByNomeLike(String nome);
     
-    @Query(value = "SELECT p.*, pi.interesse_id FROM pessoa p INNER JOIN pessoa_interesse pi on pi.id = p.id",
+    @Query(value = "SELECT p.*, pi.interesse_nome FROM pessoa p INNER JOIN pessoa_interesse pi on pi.id = p.id",
             nativeQuery = true)
     List<Pessoa> buscaSql();
 }
