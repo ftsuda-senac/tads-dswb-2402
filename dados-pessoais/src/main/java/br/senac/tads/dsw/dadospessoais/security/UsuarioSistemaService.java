@@ -4,30 +4,38 @@
  */
 package br.senac.tads.dsw.dadospessoais.security;
 
+import jakarta.annotation.PostConstruct;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UsuarioSistemaService implements UserDetailsService {
     
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    
     Map<String, UsuarioSistema> mapUsuarios;
     
-    public UsuarioSistemaService() {
+    @PostConstruct
+    public void init() {
         mapUsuarios = new LinkedHashMap<>();
         mapUsuarios.put("joao",
                 new UsuarioSistema("João Silva", "joao",
-                        "{noop}Abcd1234", List.of(new Permissao("PEAO"), new Permissao("PEAO_PREMIUM"))));
+                        passwordEncoder.encode("Abcd1234"), List.of(new Permissao("PEAO"), new Permissao("PEAO_PREMIUM"))));
         mapUsuarios.put("maria",
                 new UsuarioSistema("Maria Souza", "maria",
-                        "{noop}Abcd1234", List.of(new Permissao("GERENTE"))));
+                        passwordEncoder.encode("Abcd1234"), List.of(new Permissao("GERENTE"))));
         mapUsuarios.put("jose",
                 new UsuarioSistema("Jose Santos", "jose",
-                        "{noop}Abcd1234", List.of(new Permissao("CHEFE"))));
+                        passwordEncoder.encode("Abcd1234"), List.of(new Permissao("CHEFE"))));
     }
 
     @Override
