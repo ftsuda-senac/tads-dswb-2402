@@ -17,6 +17,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
@@ -30,6 +31,7 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@EnableMethodSecurity
 public class SecurityConfig {
 
     private static final String CHAVE_ASSINATURA_JWT = "cH@v353cr37@";
@@ -93,9 +95,9 @@ public class SecurityConfig {
                                 .requestMatchers("/login", "/paginas/**",
                                         "/h2-console/**", 
                                         "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
-//                                .requestMatchers("/operador").hasAuthority("SCOPE_OPERADOR")
-//                                .requestMatchers("/admin").hasAuthority("SCOPE_ADMIN")
-//                                .requestMatchers("/deus").hasAuthority("SCOPE_DEUS")
+//                                .requestMatchers("/peao").hasAuthority("SCOPE_PEAO")
+//                                .requestMatchers("/gerente").hasAuthority("SCOPE_GERENTE")
+//                                .requestMatchers("/chefe").hasAuthority("SCOPE_CHEFE")
                                 .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> Customizer.withDefaults()))
                 .build();
